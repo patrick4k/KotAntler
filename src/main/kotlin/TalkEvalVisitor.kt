@@ -31,7 +31,7 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
 
     override fun visitPrintExpr(ctx: talkParser.PrintExprContext?): Scalar {
         val out = visit(ctx?.expression())
-        println("${ctx?.text} = $out")
+        println("${ctx?.expression()?.text} = $out")
         return out
     }
 
