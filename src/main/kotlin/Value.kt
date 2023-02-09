@@ -1,4 +1,4 @@
-class Scalar(val value: Any?) {
+class Value(val value: Any?) {
     fun asBoolean(): Boolean? {
         return value as Boolean?
     }
@@ -27,7 +27,7 @@ class Scalar(val value: Any?) {
         if (value == null || o == null || o.javaClass != this.javaClass) {
             return false
         }
-        val that = o as Scalar
+        val that = o as Value
         return value == that.value
     }
 
@@ -36,6 +36,6 @@ class Scalar(val value: Any?) {
     }
 
     companion object {
-        var VOID = Scalar(Any())
+        var VOID = Value(Any())
     }
 }

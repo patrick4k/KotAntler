@@ -22,15 +22,66 @@ public interface talkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatment(talkParser.StatmentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link talkParser#expression}.
+	 * Visit a parse tree produced by the {@code strExpr}
+	 * labeled alternative in {@link talkParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpression(talkParser.ExpressionContext ctx);
+	T visitStrExpr(talkParser.StrExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link talkParser#print}.
+	 * Visit a parse tree produced by the {@code parExpr}
+	 * labeled alternative in {@link talkParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPrint(talkParser.PrintContext ctx);
+	T visitParExpr(talkParser.ParExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code addSubExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddSubExpr(talkParser.AddSubExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code multDivExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultDivExpr(talkParser.MultDivExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code powExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPowExpr(talkParser.PowExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code keywordExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKeywordExpr(talkParser.KeywordExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code numExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumExpr(talkParser.NumExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code idExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdExpr(talkParser.IdExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code printExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintExpr(talkParser.PrintExprContext ctx);
 }

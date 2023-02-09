@@ -1,28 +1,12 @@
+package scalar
 
-fun main() {
-    val sc1 = Number(123)
-    val sc2 = Number(0.5)
+import Program
 
-    println(sc1.plus(sc2))
-}
-
-abstract class Scalar(private var value: Any) {
+abstract class Scalar(private var value: Any?) {
     abstract override fun toString(): String
 
-//     Number
-    abstract fun plus(scalar: Number): Scalar
-    abstract fun min(scalar: Number): Scalar
-    abstract fun mult(scalar: Number): Scalar
-    abstract fun div(scalar: Number): Scalar
-    abstract fun pow(scalar: Number): Scalar
-    
-//    String
-    abstract fun plus(scalar: Str): Scalar
-    abstract fun min(scalar: Str): Scalar
-    abstract fun mult(scalar: Str): Scalar
-    abstract fun div(scalar: Str): Scalar
-    abstract fun pow(scalar: Str): Scalar
-    
+    abstract fun asNumber(): Number
+    abstract fun asStr(): Str
 
     fun asDouble(): Double {
         return value as Double
@@ -32,106 +16,113 @@ abstract class Scalar(private var value: Any) {
         return value as String
     }
 
-}
-
-/*NUMBER*/
-
-fun Number(value: Int): Number { /*Secondary Constructor (INT -> Number)*/
-    return Number(value.toDouble())
-}
-
-class Number(private var value: Double): Scalar(value) { /*Primary Constructor (Double -> Number*/
-
-    override fun toString(): String {
-        return value.toString()
+//     Number
+    protected abstract fun plus(scalar: Number): Scalar
+    protected abstract fun min(scalar: Number): Scalar
+    protected abstract fun mult(scalar: Number): Scalar
+    protected abstract fun div(scalar: Number): Scalar
+    protected abstract fun pow(scalar: Number): Scalar
+    
+//    String
+    protected abstract fun plus(scalar: Str): Scalar
+    protected abstract fun min(scalar: Str): Scalar
+    protected abstract fun mult(scalar: Str): Scalar
+    protected abstract fun div(scalar: Str): Scalar
+    protected abstract fun pow(scalar: Str): Scalar
+    
+//    Secondary Scalars
+    protected fun plus(scalar: SecondaryScalar): Scalar {
+        return when (this) {
+            is Number -> this.plus(scalar.asNumber())
+            is Str -> this.plus(scalar.asStr())
+            else -> Null()
+        }
     }
-
-    override fun plus(scalar: Number): Scalar {
-        return Number(value + scalar.asDouble())
+    protected fun min(scalar: SecondaryScalar): Scalar {
+        return when (this) {
+            is Number -> this.min(scalar.asNumber())
+            is Str -> this.min(scalar.asStr())
+            else -> Null()
+        }
     }
-
-    override fun plus(scalar: Str): Scalar {
-        TODO("Not yet implemented")
+    protected fun mult(scalar: SecondaryScalar): Scalar {
+        return when (this) {
+            is Number -> this.mult(scalar.asNumber())
+            is Str -> this.mult(scalar.asStr())
+            else -> Null()
+        }
     }
-
-    override fun min(scalar: Number): Scalar {
-        TODO("Not yet implemented")
+    protected fun div(scalar: SecondaryScalar): Scalar {
+        return when (this) {
+            is Number -> this.div(scalar.asNumber())
+            is Str -> this.div(scalar.asStr())
+            else -> Null()
+        }
     }
-
-    override fun min(scalar: Str): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun mult(scalar: Number): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun mult(scalar: Str): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun div(scalar: Number): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun div(scalar: Str): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun pow(scalar: Number): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun pow(scalar: Str): Scalar {
-        TODO("Not yet implemented")
+    protected fun pow(scalar: SecondaryScalar): Scalar {
+        return when (this) {
+            is Number -> this.pow(scalar.asNumber())
+            is Str -> this.pow(scalar.asStr())
+            else -> Null()
+        }
     }
 
 
-}
+    /*
+        Map types for each operation using smart cast
+        - Need this for operating across two different types
+        - Cannot use patter specific visitors since ID may lead to conflicting types
+    */
 
-class Str(private var value: String): Scalar(value) {
-    override fun toString(): String {
-        return value
+    fun plus(scalar: Scalar): Scalar {
+        when (scalar) {
+            is Number-> return this.plus(scalar)
+            is Str-> return this.plus(scalar)
+            is Bool -> return this.plus(scalar)
+            is Null -> return this.plus(scalar)
+        }
+        Program.throwError("Null expression")
+        return Null()
     }
 
-    override fun plus(scalar: Number): Scalar {
-        TODO("Not yet implemented")
+    fun min(scalar: Scalar): Scalar {
+        when (scalar) {
+            is Number-> return this.min(scalar)
+            is Str-> return this.min(scalar)
+            is Bool -> return this.min(scalar)
+            is Null -> return this.min(scalar)
+        }
+        return Null()
     }
 
-    override fun plus(scalar: Str): Scalar {
-        TODO("Not yet implemented")
+    fun mult(scalar: Scalar): Scalar {
+        when (scalar) {
+            is Number -> return this.mult(scalar)
+            is Str-> return this.mult(scalar)
+            is Bool -> return this.mult(scalar)
+            is Null -> return this.mult(scalar)
+        }
+        return Null()
     }
 
-    override fun min(scalar: Number): Scalar {
-        TODO("Not yet implemented")
+    fun div(scalar: Scalar): Scalar {
+        when (scalar) {
+            is Number -> return this.div(scalar)
+            is Str-> return this.div(scalar)
+            is Bool -> return this.div(scalar)
+            is Null -> return this.div(scalar)
+        }
+        return Null()
     }
 
-    override fun min(scalar: Str): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun mult(scalar: Number): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun mult(scalar: Str): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun div(scalar: Number): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun div(scalar: Str): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun pow(scalar: Number): Scalar {
-        TODO("Not yet implemented")
-    }
-
-    override fun pow(scalar: Str): Scalar {
-        TODO("Not yet implemented")
+    fun pow(scalar: Scalar): Scalar {
+        when (scalar) {
+            is Number -> return this.pow(scalar)
+            is Str-> return this.pow(scalar)
+            is Bool -> return this.pow(scalar)
+            is Null -> return this.pow(scalar)
+        }
+        return Null()
     }
 
 }
