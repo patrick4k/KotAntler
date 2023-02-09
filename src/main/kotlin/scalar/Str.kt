@@ -1,0 +1,4 @@
+package scalar
+
+class Str {
+}
