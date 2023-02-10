@@ -7,6 +7,9 @@ abstract class Scalar(private var value: Any?) {
 
     abstract fun asNumber(): Number
     abstract fun asStr(): Str
+    abstract fun asBool(): Bool
+
+    abstract fun negate()
 
     fun asDouble(): Double {
         return value as Double
@@ -14,6 +17,10 @@ abstract class Scalar(private var value: Any?) {
 
     fun asString(): String {
         return value as String
+    }
+
+    open fun asBoolean(): Boolean {
+        return this.asBool().asBoolean()
     }
 
 //     Number
@@ -35,6 +42,7 @@ abstract class Scalar(private var value: Any?) {
         return when (this) {
             is Number -> this.plus(scalar.asNumber())
             is Str -> this.plus(scalar.asStr())
+            is SecondaryScalar -> this.plusSecondary(scalar)
             else -> Null()
         }
     }
@@ -42,6 +50,7 @@ abstract class Scalar(private var value: Any?) {
         return when (this) {
             is Number -> this.min(scalar.asNumber())
             is Str -> this.min(scalar.asStr())
+            is SecondaryScalar -> this.minSecondary(scalar)
             else -> Null()
         }
     }
@@ -49,6 +58,7 @@ abstract class Scalar(private var value: Any?) {
         return when (this) {
             is Number -> this.mult(scalar.asNumber())
             is Str -> this.mult(scalar.asStr())
+            is SecondaryScalar -> this.multSecondary(scalar)
             else -> Null()
         }
     }
@@ -56,6 +66,7 @@ abstract class Scalar(private var value: Any?) {
         return when (this) {
             is Number -> this.div(scalar.asNumber())
             is Str -> this.div(scalar.asStr())
+            is SecondaryScalar -> this.divSecondary(scalar)
             else -> Null()
         }
     }
@@ -63,6 +74,7 @@ abstract class Scalar(private var value: Any?) {
         return when (this) {
             is Number -> this.pow(scalar.asNumber())
             is Str -> this.pow(scalar.asStr())
+            is SecondaryScalar -> this.powSecondary(scalar)
             else -> Null()
         }
     }

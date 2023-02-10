@@ -16,6 +16,14 @@ class Number(private var value: Double): Scalar(value) {
         return Str(this.value.toString())
     }
 
+    override fun asBool(): Bool {
+        return Bool(this.value > 0)
+    }
+
+    override fun negate() {
+        this.value *= -1
+    }
+
     /*PLUS*/
     override fun plus(scalar: Number): Scalar {
         return Number(this.value + scalar.value)

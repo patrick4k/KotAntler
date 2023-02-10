@@ -9,13 +9,15 @@ statment
 ;
 
 expression
-: expression '^' expression #powExpr
+: '-' expression #negExpr
+| expression '^' expression #powExpr
 | expression op=('*'|'/') expression #multDivExpr
 | expression op=('+'|'-') expression #addSubExpr
 | KEYWORD #keywordExpr
 | NUMBER #numExpr
 | STRING #strExpr
 | ID #idExpr
+| '|' expression '|' #absExpr
 | '(' expression ')' #parExpr
 | '!' expression '!' #printExpr
 ;

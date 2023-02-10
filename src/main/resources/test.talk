@@ -14,10 +14,17 @@
 !null * 1!;
 
 // true in number context is 1
-!true * 1!;
+!-true * 1!;
 
 // true false null keywords are casted to strings in string context
 !"Hello " + true + " " + false + " " + null!;
+
+// negative sign on a string reverses the order
+!-"string"!;
+
+// Minus to remove first match
+!"Hello World!" - "o World"!;
+!"Hello World!" - "\w\s\w+"!;
 
 // Divide a string w a string to remove all matches
 !"Hello World!" / "l"!;
@@ -30,6 +37,15 @@
 !"Hello World!" ^ "o World"!;
 !"Hello World!" ^ "\w\s\w+"!;
 
-// Minus to remove first match
-!"Hello World!" - "o World"!;
-!"Hello World!" - "\w\s\w+"!;
+// || act as absolute value bars
+!100 * |-1|!;
+!100 * -1!;
+
+// In bool context + acts as OR op
+!false + false!;
+!false + true!;
+// and * acts as AND op
+!true * true!;
+!true * false!;
+// and - acts as OR but with the second term negated
+!false - false!;

@@ -13,6 +13,14 @@ class Str(private var value: String): Scalar(value) {
         return this
     }
 
+    override fun asBool(): Bool {
+        return Bool(this.value != "")
+    }
+
+    override fun negate() {
+        this.value = this.value.reversed()
+    }
+
     override fun plus(scalar: Number): Scalar {
         return this.plus(scalar.asStr())
     }

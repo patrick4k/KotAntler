@@ -43,6 +43,20 @@ public interface talkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddSubExpr(talkParser.AddSubExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code negExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNegExpr(talkParser.NegExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code absExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAbsExpr(talkParser.AbsExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code multDivExpr}
 	 * labeled alternative in {@link talkParser#expression}.
 	 * @param ctx the parse tree

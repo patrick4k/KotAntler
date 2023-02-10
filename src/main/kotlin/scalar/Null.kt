@@ -10,6 +10,14 @@ class Null(): SecondaryScalar(value = null) {
         return Str(this.toString())
     }
 
+    override fun asBool(): Bool {
+        return Bool(false)
+    }
+
+    override fun negate() {
+        // Do nothing
+    }
+
     override fun toString(): String {
         return "null"
     }

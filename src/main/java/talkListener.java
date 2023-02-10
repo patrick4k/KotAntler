@@ -63,6 +63,30 @@ public interface talkListener extends ParseTreeListener {
 	 */
 	void exitAddSubExpr(talkParser.AddSubExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code negExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNegExpr(talkParser.NegExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code negExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNegExpr(talkParser.NegExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code absExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAbsExpr(talkParser.AbsExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code absExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAbsExpr(talkParser.AbsExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code multDivExpr}
 	 * labeled alternative in {@link talkParser#expression}.
 	 * @param ctx the parse tree

@@ -1,5 +1,6 @@
 import scalar.*
 import scalar.Number
+import talkParser.NegExprContext
 
 class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
     companion object {
@@ -16,6 +17,14 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
         return Null()
     }
 
+    override fun visitNegExpr(ctx: talkParser.NegExprContext?): Scalar {
+        if (ctx?.expression() is NegExprContext)
+            Program.throwError("Cannot negate on negate expression",ctx.text)
+        val expr = visit(ctx?.expression())
+        expr.negate()
+        return expr
+    }
+
     override fun visitKeywordExpr(ctx: talkParser.KeywordExprContext?): Scalar {
         when (ctx?.text) {
             "true" -> return Bool(true)
@@ -27,6 +36,12 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
 
     override fun visitParExpr(ctx: talkParser.ParExprContext?): Scalar {
         return visit(ctx?.expression())
+    }
+
+    override fun visitAbsExpr(ctx: talkParser.AbsExprContext?): Scalar {
+        val expr = visit(ctx?.expression())
+        if (!expr.asBool().asBoolean()) expr.negate()
+        return expr
     }
 
     override fun visitPrintExpr(ctx: talkParser.PrintExprContext?): Scalar {
