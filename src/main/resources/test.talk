@@ -1,3 +1,4 @@
+// EXPRESSIONS
 
 // Print Hello World!
 !"Hello World!"!;
@@ -5,15 +6,30 @@
 // Print with added space, * 2 repeats the string 2 times
 !("Hello World!" + " ") * 2!;
 
-// divide a string w a string to remove all matches
+// !! printing returns expression value
+!!"Hello"! + " World!"!; // This expression prints "Hello" and "Hello World!"
+
+// false or null in number context == 0
+!false * 1!;
+!null * 1!;
+
+// true in number context is 1
+!true * 1!;
+
+// true false null keywords are casted to strings in string context
+!"Hello " + true + " " + false + " " + null!;
+
+// Divide a string w a string to remove all matches
 !"Hello World!" / "l"!;
 
-// this also works with regex!
+// This also works with regex!
 !"Hello World!" / "\s\w+"!;
 !"Hello World!" / "\w+\s"!;
 
-// carrot to return first match
+// Carrot to return first match
+!"Hello World!" ^ "o World"!;
 !"Hello World!" ^ "\w\s\w+"!;
 
-// minus to remove first match
+// Minus to remove first match
+!"Hello World!" - "o World"!;
 !"Hello World!" - "\w\s\w+"!;

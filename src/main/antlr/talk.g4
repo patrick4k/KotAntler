@@ -3,9 +3,9 @@ grammar talk;
 program: statment* EOF;
 
 statment
-:expression ENDL
-|ID '=' expression ENDL
-|ENDL
+: expression ENDL
+| ID '=' expression ENDL
+| ENDL
 ;
 
 expression
@@ -31,8 +31,8 @@ NUMBER: DIGIT+ ('.' DIGIT+)?;
 STRING: '"' .*? '"';
 fragment DIGIT: [0-9];
 fragment LETTER
-:[a-z]
-|[A-Z]
+: [a-z]
+| [A-Z]
 ;
 
 ENDL
