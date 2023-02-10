@@ -50,10 +50,10 @@ class Str(private var value: String): Scalar(value) {
     }
 
     override fun pow(scalar: Number): Scalar {
-        TODO("Not yet implemented")
+        return this.pow(scalar.asStr())
     }
 
     override fun pow(scalar: Str): Scalar {
-        TODO("Not yet implemented")
+        return Str(Regex(scalar.value).findAll(this.value).first().value)
     }
 }

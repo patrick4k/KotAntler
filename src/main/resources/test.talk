@@ -1,2 +1,19 @@
 
+// Print Hello World!
+!"Hello World!"!;
+
+// Print with added space, * 2 repeats the string 2 times
 !("Hello World!" + " ") * 2!;
+
+// divide a string w a string to remove all matches
+!"Hello World!" / "l"!;
+
+// this also works with regex!
+!"Hello World!" / "\s\w+"!;
+!"Hello World!" / "\w+\s"!;
+
+// carrot to return first match
+!"Hello World!" ^ "\w\s\w+"!;
+
+// minus to remove first match
+!"Hello World!" - "\w\s\w+"!;
