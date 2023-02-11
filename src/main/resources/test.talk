@@ -1,51 +1,62 @@
 // EXPRESSIONS
 
-// Print Hello World!
-!"Hello World!"!;
+// Print Hello World`
+`"Hello World`"`;
 
 // Print with added space, * 2 repeats the string 2 times
-!("Hello World!" + " ") * 2!;
+`("Hello World`" + " ") * 2`;
 
-// !! printing returns expression value
-!!"Hello"! + " World!"!; // This expression prints "Hello" and "Hello World!"
+// `` printing returns expression value
+``"Hello"` + " World`"`; // This expression prints "Hello" and "Hello World`"
 
 // false or null in number context == 0
-!false * 1!;
-!null * 1!;
+`false * 1`;
+`null * 1`;
 
 // true in number context is 1
-!-true * 1!;
+`-true * 1`;
 
 // true false null keywords are casted to strings in string context
-!"Hello " + true + " " + false + " " + null!;
+`"Hello " + true + " " + false + " " + null`;
 
 // negative sign on a string reverses the order
-!-"string"!;
+`-"string"`;
 
 // Minus to remove first match
-!"Hello World!" - "o World"!;
-!"Hello World!" - "\w\s\w+"!;
+`"Hello World`" - "o World"`;
+`"Hello World`" - "\w\s\w+"`;
 
 // Divide a string w a string to remove all matches
-!"Hello World!" / "l"!;
+`"Hello World`" / "l"`;
 
-// This also works with regex!
-!"Hello World!" / "\s\w+"!;
-!"Hello World!" / "\w+\s"!;
+// This also works with regex`
+`"Hello World`" / "\s\w+"`;
+`"Hello World`" / "\w+\s"`;
 
 // Carrot to return first match
-!"Hello World!" ^ "o World"!;
-!"Hello World!" ^ "\w\s\w+"!;
+`"Hello World`" ^ "o World"`;
+`"Hello World`" ^ "\w\s\w+"`;
 
 // || act as absolute value bars
-!100 * |-1|!;
-!100 * -1!;
+`100 * |-1|`;
+`100 * -1`;
 
-// In bool context + acts as OR op
-!false + false!;
-!false + true!;
-// and * acts as AND op
-!true * true!;
-!true * false!;
-// and - acts as OR but with the second term negated
-!false - false!;
+// In bool context '+' acts as OR op
+`false + false`;
+`false + true`;
+
+// and '*' acts as AND op
+`true * true`;
+`true * false`;
+
+// and '-' acts as OR but with the second term negated
+`false - false`;
+
+// conditionals via ternary operation <expression> ? <expression> : expression
+`
+false?          // if
+"tru`" * 2:     // on true
+null?           // on false
+"true but on else":
+"false on else"
+`;

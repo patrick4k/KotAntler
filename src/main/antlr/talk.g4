@@ -3,23 +3,40 @@ grammar talk;
 program: statment* EOF;
 
 statment
-: expression ENDL
-| ID '=' expression ENDL
-| ENDL
+: expression ENDL #exprStat
+| expression? '!' #descopeStat
+| declaration ENDL #declarionStat
+| ENDL #endlStat
+;
+
+declaration
+: 'let' (ID|assign) (','(ID|assign))*
+;
+
+assign
+: ID '=' expression
+;
+
+
+block
+: '{' statment* '}'
 ;
 
 expression
-: '-' expression #negExpr
+: block #blockExpr
+| assign #assignmentExpr
+| '-' expression #negExpr
+| expression '?' expression (':' expression)? #ifExpr
 | expression '^' expression #powExpr
 | expression op=('*'|'/') expression #multDivExpr
 | expression op=('+'|'-') expression #addSubExpr
+| '|' expression '|' #absExpr
+| '(' expression ')' #parExpr
+| '`' expression '`' #printExpr
 | KEYWORD #keywordExpr
 | NUMBER #numExpr
 | STRING #strExpr
 | ID #idExpr
-| '|' expression '|' #absExpr
-| '(' expression ')' #parExpr
-| '!' expression '!' #printExpr
 ;
 
 KEYWORD
@@ -43,8 +60,13 @@ ENDL
 
 fragment NL: ('\r' | '\n')+;
 
-COMMENT
-:'//' ~( '\r' | '\n' )* -> skip
+IGNORE
+: COMMENT -> skip
+;
+
+fragment COMMENT
+:'//' ~( '\r' | '\n' )*
+|'/*' .*? '*/'
 ;
 
 WS

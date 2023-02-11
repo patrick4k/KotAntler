@@ -1,13 +1,16 @@
 package scalar
 
-class Null : SecondaryScalar(value = null) {
+class Void : SecondaryScalar(null) {
+    override fun toString(): String {
+        return "VOID"
+    }
 
     override fun asNumber(): Number {
         return Number(0.0)
     }
 
     override fun asStr(): Str {
-        return Str(this.toString())
+        return Str("")
     }
 
     override fun asBool(): Bool {
@@ -15,9 +18,4 @@ class Null : SecondaryScalar(value = null) {
     }
 
     override fun negate() { }
-
-    override fun toString(): String {
-        return "null"
-    }
-
 }

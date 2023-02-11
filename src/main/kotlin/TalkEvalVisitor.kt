@@ -1,5 +1,6 @@
 import scalar.*
 import scalar.Number
+import talkParser.DescopeStatContext
 import talkParser.NegExprContext
 
 class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
@@ -12,9 +13,36 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
         return Null()
     }
 
-    override fun visitStatment(ctx: talkParser.StatmentContext?): Scalar {
-        ctx?.children?.forEach {visit(it)}
-        return Null()
+    override fun visitDeclaration(ctx: talkParser.DeclarationContext?): Scalar {
+        ctx?.ID()?.forEach { Program.setNewVar(it.text, Null()) }
+        ctx?.assign()?.forEach {
+            Program.setNewVar(it.ID().text, Null())
+            visitAssign(it)
+        }
+        return Void()
+    }
+
+    override fun visitExprStat(ctx: talkParser.ExprStatContext?): Scalar {
+        return visit(ctx?.expression())
+    }
+
+    override fun visitAssign(ctx: talkParser.AssignContext?): Scalar {
+        val varValue = visit(ctx?.expression())
+        Program.setVar(ctx?.ID()?.text!!, varValue)
+        return varValue
+    }
+
+    override fun visitDeclarionStat(ctx: talkParser.DeclarionStatContext?): Scalar {
+        return visitDeclaration(ctx?.declaration())
+    }
+
+    override fun visitAssignmentExpr(ctx: talkParser.AssignmentExprContext?): Scalar {
+        return visit(ctx?.assign())
+    }
+
+    override fun visitEndlStat(ctx: talkParser.EndlStatContext?): Scalar {
+        // TODO visit endl ?
+        return super.visitEndlStat(ctx)
     }
 
     override fun visitNegExpr(ctx: talkParser.NegExprContext?): Scalar {
@@ -62,6 +90,35 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
         return Str(ctx?.text?.removeSurrounding("\"")!!)
     }
 
+    override fun visitIfExpr(ctx: talkParser.IfExprContext?): Scalar {
+        if (visit(ctx?.expression(0)).asBoolean())
+            return visit(ctx?.expression(1))
+        val elseExpr = ctx?.expression(2)
+        if (elseExpr != null) return visit(elseExpr)
+        return Null()
+    }
+
+    override fun visitBlock(ctx: talkParser.BlockContext?): Scalar {
+        Program.enterScope()
+        for (stat in ctx?.statment()!!) {
+            if (stat is DescopeStatContext)
+                return visitDescopeStat(stat)
+            visit(stat)
+        }
+        Program.exitScope()
+        return Null()
+    }
+
+    override fun visitDescopeStat(ctx: talkParser.DescopeStatContext?): Scalar {
+        Program.exitScope()
+        if (ctx?.expression() != null) return visit(ctx.expression())
+        return Null()
+    }
+
+    override fun visitBlockExpr(ctx: talkParser.BlockExprContext?): Scalar {
+        return visitBlock(ctx?.block())
+    }
+
     override fun visitMultDivExpr(ctx: talkParser.MultDivExprContext?): Scalar {
         when (ctx?.op?.text) {
             "*" -> return visit(ctx.expression(0)).mult(visit(ctx.expression(1)))
@@ -79,7 +136,6 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
     }
 
     override fun visitIdExpr(ctx: talkParser.IdExprContext?): Scalar {
-        // TODO add variable declaration
-        return Null()
+        return Program.getVar(ctx?.ID()?.text!!)
     }
 }

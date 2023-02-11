@@ -1,0 +1,30 @@
+/*
+// if elseif example with scope assignment
+let a = 0, x = true? {
+    (a = 21) ? {
+        "ya"!
+    }: {
+        a = "ur mom";
+        !
+    }!
+} : true? {
+    a = false;
+    0!
+};
+
+`x`;
+`a`;
+
+let y = 1;
+`y = y * (a = 0)`;
+`y`;
+*/
+
+let a = true, x = a, y = x;
+
+a = 123;
+
+`a`;
+`x`;
+`y`;
+

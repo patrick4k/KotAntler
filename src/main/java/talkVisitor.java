@@ -16,11 +16,58 @@ public interface talkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgram(talkParser.ProgramContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link talkParser#statment}.
+	 * Visit a parse tree produced by the {@code exprStat}
+	 * labeled alternative in {@link talkParser#statment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatment(talkParser.StatmentContext ctx);
+	T visitExprStat(talkParser.ExprStatContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code descopeStat}
+	 * labeled alternative in {@link talkParser#statment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDescopeStat(talkParser.DescopeStatContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code declarionStat}
+	 * labeled alternative in {@link talkParser#statment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclarionStat(talkParser.DeclarionStatContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code endlStat}
+	 * labeled alternative in {@link talkParser#statment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEndlStat(talkParser.EndlStatContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link talkParser#declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaration(talkParser.DeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link talkParser#assign}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssign(talkParser.AssignContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link talkParser#block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlock(talkParser.BlockContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code assignmentExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignmentExpr(talkParser.AssignmentExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code strExpr}
 	 * labeled alternative in {@link talkParser#expression}.
@@ -29,13 +76,6 @@ public interface talkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStrExpr(talkParser.StrExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code parExpr}
-	 * labeled alternative in {@link talkParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParExpr(talkParser.ParExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code addSubExpr}
 	 * labeled alternative in {@link talkParser#expression}.
 	 * @param ctx the parse tree
@@ -43,33 +83,12 @@ public interface talkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddSubExpr(talkParser.AddSubExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code negExpr}
-	 * labeled alternative in {@link talkParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNegExpr(talkParser.NegExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code absExpr}
 	 * labeled alternative in {@link talkParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAbsExpr(talkParser.AbsExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code multDivExpr}
-	 * labeled alternative in {@link talkParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMultDivExpr(talkParser.MultDivExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code powExpr}
-	 * labeled alternative in {@link talkParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPowExpr(talkParser.PowExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code keywordExpr}
 	 * labeled alternative in {@link talkParser#expression}.
@@ -85,12 +104,47 @@ public interface talkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNumExpr(talkParser.NumExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code idExpr}
+	 * Visit a parse tree produced by the {@code parExpr}
 	 * labeled alternative in {@link talkParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIdExpr(talkParser.IdExprContext ctx);
+	T visitParExpr(talkParser.ParExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code negExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNegExpr(talkParser.NegExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ifExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfExpr(talkParser.IfExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code multDivExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultDivExpr(talkParser.MultDivExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code blockExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlockExpr(talkParser.BlockExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code powExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPowExpr(talkParser.PowExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code printExpr}
 	 * labeled alternative in {@link talkParser#expression}.
@@ -98,4 +152,11 @@ public interface talkVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPrintExpr(talkParser.PrintExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code idExpr}
+	 * labeled alternative in {@link talkParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdExpr(talkParser.IdExprContext ctx);
 }
