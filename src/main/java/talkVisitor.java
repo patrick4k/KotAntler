@@ -50,11 +50,19 @@ public interface talkVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeclaration(talkParser.DeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link talkParser#assign}.
+	 * Visit a parse tree produced by the {@code assignExpression}
+	 * labeled alternative in {@link talkParser#assignId}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssign(talkParser.AssignContext ctx);
+	T visitAssignExpression(talkParser.AssignExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code assignPointer}
+	 * labeled alternative in {@link talkParser#assignId}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignPointer(talkParser.AssignPointerContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link talkParser#block}.
 	 * @param ctx the parse tree

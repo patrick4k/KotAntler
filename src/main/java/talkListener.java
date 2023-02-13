@@ -75,15 +75,29 @@ public interface talkListener extends ParseTreeListener {
 	 */
 	void exitDeclaration(talkParser.DeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link talkParser#assign}.
+	 * Enter a parse tree produced by the {@code assignExpression}
+	 * labeled alternative in {@link talkParser#assignId}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssign(talkParser.AssignContext ctx);
+	void enterAssignExpression(talkParser.AssignExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link talkParser#assign}.
+	 * Exit a parse tree produced by the {@code assignExpression}
+	 * labeled alternative in {@link talkParser#assignId}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssign(talkParser.AssignContext ctx);
+	void exitAssignExpression(talkParser.AssignExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code assignPointer}
+	 * labeled alternative in {@link talkParser#assignId}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignPointer(talkParser.AssignPointerContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assignPointer}
+	 * labeled alternative in {@link talkParser#assignId}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignPointer(talkParser.AssignPointerContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link talkParser#block}.
 	 * @param ctx the parse tree

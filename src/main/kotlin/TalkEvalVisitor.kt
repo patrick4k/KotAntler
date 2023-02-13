@@ -15,21 +15,39 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
 
     override fun visitDeclaration(ctx: talkParser.DeclarationContext?): Scalar {
         ctx?.ID()?.forEach { Program.setNewVar(it.text, Null()) }
-        ctx?.assign()?.forEach {
-            Program.setNewVar(it.ID().text, Null())
-            visitAssign(it)
+
+        ctx?.assignId()?.forEach {
+            when (it) {
+                is talkParser.AssignExpressionContext -> {
+                    Program.setNewVar(it.ID()?.text!!, Null())
+                    visitAssignExpression(it)
+                }
+                is talkParser.AssignPointerContext -> {
+                    Program.setNewVar(it.ID(0)?.text!!, Null())
+                    visitAssignPointer(it)
+                }
+            }
         }
         return Void()
     }
 
-    override fun visitExprStat(ctx: talkParser.ExprStatContext?): Scalar {
-        return visit(ctx?.expression())
-    }
-
-    override fun visitAssign(ctx: talkParser.AssignContext?): Scalar {
+    override fun visitAssignExpression(ctx: talkParser.AssignExpressionContext?): Scalar {
         val varValue = visit(ctx?.expression())
         Program.setVar(ctx?.ID()?.text!!, varValue)
-        return varValue
+        return super.visitAssignExpression(ctx)
+    }
+
+    override fun visitAssignPointer(ctx: talkParser.AssignPointerContext?): Scalar {
+        val varValue = Program.getVar(ctx?.ID(1)?.text!!)
+        if (varValue != null) {
+            Program.setVar(ctx.ID(0)?.text!!, varValue)
+            return varValue
+        }
+        return Null()
+    }
+
+    override fun visitExprStat(ctx: talkParser.ExprStatContext?): Scalar {
+        return visit(ctx?.expression())
     }
 
     override fun visitDeclarionStat(ctx: talkParser.DeclarionStatContext?): Scalar {
@@ -37,7 +55,7 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
     }
 
     override fun visitAssignmentExpr(ctx: talkParser.AssignmentExprContext?): Scalar {
-        return visit(ctx?.assign())
+        return visit(ctx?.assignId())
     }
 
     override fun visitEndlStat(ctx: talkParser.EndlStatContext?): Scalar {

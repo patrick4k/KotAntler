@@ -20,11 +20,10 @@ let y = 1;
 `y`;
 */
 
-let a = true, x = a, y = x;
+let a = true, x -> a, y = x;
 
 a = 123;
 
 `a`;
 `x`;
 `y`;
-

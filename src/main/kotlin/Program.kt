@@ -12,9 +12,9 @@ class Program {
         private lateinit var program: Program
 
         fun getVar(varName: String): Scalar {
-            for (scope in scopes.reversed()) {
-                if (scope.containsKey(varName))
-                    return scope[varName]!!
+            for (i in scopes.lastIndex downTo 0) {
+                if (scopes[i].containsKey(varName))
+                    return scopes[i][varName]!!
             }
             throwError("Could not resolve identifier", varName)
             return Null()

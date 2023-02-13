@@ -88,13 +88,25 @@ public class talkBaseListener implements talkListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssign(talkParser.AssignContext ctx) { }
+	@Override public void enterAssignExpression(talkParser.AssignExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssign(talkParser.AssignContext ctx) { }
+	@Override public void exitAssignExpression(talkParser.AssignExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssignPointer(talkParser.AssignPointerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignPointer(talkParser.AssignPointerContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

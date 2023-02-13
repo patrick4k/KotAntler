@@ -10,11 +10,12 @@ statment
 ;
 
 declaration
-: 'let' (ID|assign) (','(ID|assign))*
+: 'let' (ID|assignId) (','(ID|assignId))*
 ;
 
-assign
-: ID '=' expression
+assignId
+: ID '=' expression #assignExpression
+| ID '->' ID #assignPointer
 ;
 
 
@@ -24,7 +25,7 @@ block
 
 expression
 : block #blockExpr
-| assign #assignmentExpr
+| assignId #assignmentExpr
 | '-' expression #negExpr
 | expression '?' expression (':' expression)? #ifExpr
 | expression '^' expression #powExpr
