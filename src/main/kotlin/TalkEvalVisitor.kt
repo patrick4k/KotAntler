@@ -34,16 +34,13 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
     override fun visitAssignExpression(ctx: talkParser.AssignExpressionContext?): Scalar {
         val varValue = visit(ctx?.expression())
         Program.setVar(ctx?.ID()?.text!!, varValue)
-        return super.visitAssignExpression(ctx)
+        return varValue
     }
 
     override fun visitAssignPointer(ctx: talkParser.AssignPointerContext?): Scalar {
         val varValue = Program.getVar(ctx?.ID(1)?.text!!)
-        if (varValue != null) {
-            Program.setVar(ctx.ID(0)?.text!!, varValue)
-            return varValue
-        }
-        return Null()
+        Program.setVar(ctx.ID(0)?.text!!, varValue)
+        return varValue
     }
 
     override fun visitExprStat(ctx: talkParser.ExprStatContext?): Scalar {
@@ -119,8 +116,10 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
     override fun visitBlock(ctx: talkParser.BlockContext?): Scalar {
         Program.enterScope()
         for (stat in ctx?.statment()!!) {
-            if (stat is DescopeStatContext)
-                return visitDescopeStat(stat)
+            if (stat is DescopeStatContext) {
+                Program.exitScope()
+                return visit(stat.expression())
+            }
             visit(stat)
         }
         Program.exitScope()
@@ -128,7 +127,6 @@ class TalkEvalVisitor : talkBaseVisitor<Scalar>() {
     }
 
     override fun visitDescopeStat(ctx: talkParser.DescopeStatContext?): Scalar {
-        Program.exitScope()
         if (ctx?.expression() != null) return visit(ctx.expression())
         return Null()
     }

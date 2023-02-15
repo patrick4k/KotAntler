@@ -32,8 +32,8 @@ public class talkParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'!'", "'let'", "','", "'='", "'->'", "'{'", "'}'", "'-'", "'?'", 
-			"':'", "'^'", "'*'", "'/'", "'+'", "'|'", "'('", "')'", "'`'", null, 
+			null, "'!'", "'let'", "','", "'='", "'->'", "'{'", "'}'", "'?'", "':'", 
+			"'-'", "'^'", "'*'", "'/'", "'+'", "'|'", "'('", "')'", "'`'", null, 
 			null, null, null, "';'"
 		};
 	}
@@ -134,7 +134,7 @@ public class talkParser extends Parser {
 			setState(15);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 16613702L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 16614470L) != 0) {
 				{
 				{
 				setState(12);
@@ -278,7 +278,7 @@ public class talkParser extends Parser {
 				setState(24);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (((_la) & ~0x3f) == 0 && ((1L << _la) & 8225088L) != 0) {
+				if (((_la) & ~0x3f) == 0 && ((1L << _la) & 8225856L) != 0) {
 					{
 					setState(23);
 					expression(0);
@@ -557,7 +557,7 @@ public class talkParser extends Parser {
 			setState(60);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 16613702L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 16614470L) != 0) {
 				{
 				{
 				setState(57);
@@ -926,9 +926,9 @@ public class talkParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(68);
-				match(T__7);
+				match(T__9);
 				setState(69);
-				expression(12);
+				expression(11);
 				}
 				break;
 			case 4:
@@ -1061,7 +1061,7 @@ public class talkParser extends Parser {
 						setState(95);
 						((AddSubExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
-						if ( !(_la==T__7 || _la==T__13) ) {
+						if ( !(_la==T__9 || _la==T__13) ) {
 							((AddSubExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
@@ -1078,9 +1078,9 @@ public class talkParser extends Parser {
 						_localctx = new IfExprContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(97);
-						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
+						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
 						setState(98);
-						match(T__8);
+						match(T__7);
 						setState(99);
 						expression(0);
 						setState(102);
@@ -1089,7 +1089,7 @@ public class talkParser extends Parser {
 						case 1:
 							{
 							setState(100);
-							match(T__9);
+							match(T__8);
 							setState(101);
 							expression(0);
 							}
@@ -1133,7 +1133,7 @@ public class talkParser extends Parser {
 		case 2:
 			return precpred(_ctx, 8);
 		case 3:
-			return precpred(_ctx, 11);
+			return precpred(_ctx, 14);
 		}
 		return true;
 	}
@@ -1158,7 +1158,7 @@ public class talkParser extends Parser {
 		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0003\u0005g\b"+
 		"\u0005\u0005\u0005i\b\u0005\n\u0005\f\u0005l\t\u0005\u0001\u0005\u0000"+
 		"\u0001\n\u0006\u0000\u0002\u0004\u0006\b\n\u0000\u0002\u0001\u0000\f\r"+
-		"\u0002\u0000\b\b\u000e\u000e\u007f\u0000\u000f\u0001\u0000\u0000\u0000"+
+		"\u0002\u0000\n\n\u000e\u000e\u007f\u0000\u000f\u0001\u0000\u0000\u0000"+
 		"\u0002\u001f\u0001\u0000\u0000\u0000\u0004!\u0001\u0000\u0000\u0000\u0006"+
 		"6\u0001\u0000\u0000\u0000\b8\u0001\u0000\u0000\u0000\nV\u0001\u0000\u0000"+
 		"\u0000\f\u000e\u0003\u0002\u0001\u0000\r\f\u0001\u0000\u0000\u0000\u000e"+
@@ -1188,26 +1188,26 @@ public class talkParser extends Parser {
 		"\u0000<=\u0001\u0000\u0000\u0000=?\u0001\u0000\u0000\u0000><\u0001\u0000"+
 		"\u0000\u0000?@\u0005\u0007\u0000\u0000@\t\u0001\u0000\u0000\u0000AB\u0006"+
 		"\u0005\uffff\uffff\u0000BW\u0003\b\u0004\u0000CW\u0003\u0006\u0003\u0000"+
-		"DE\u0005\b\u0000\u0000EW\u0003\n\u0005\fFG\u0005\u000f\u0000\u0000GH\u0003"+
-		"\n\u0005\u0000HI\u0005\u000f\u0000\u0000IW\u0001\u0000\u0000\u0000JK\u0005"+
-		"\u0010\u0000\u0000KL\u0003\n\u0005\u0000LM\u0005\u0011\u0000\u0000MW\u0001"+
-		"\u0000\u0000\u0000NO\u0005\u0012\u0000\u0000OP\u0003\n\u0005\u0000PQ\u0005"+
-		"\u0012\u0000\u0000QW\u0001\u0000\u0000\u0000RW\u0005\u0013\u0000\u0000"+
-		"SW\u0005\u0015\u0000\u0000TW\u0005\u0016\u0000\u0000UW\u0005\u0014\u0000"+
-		"\u0000VA\u0001\u0000\u0000\u0000VC\u0001\u0000\u0000\u0000VD\u0001\u0000"+
-		"\u0000\u0000VF\u0001\u0000\u0000\u0000VJ\u0001\u0000\u0000\u0000VN\u0001"+
-		"\u0000\u0000\u0000VR\u0001\u0000\u0000\u0000VS\u0001\u0000\u0000\u0000"+
-		"VT\u0001\u0000\u0000\u0000VU\u0001\u0000\u0000\u0000Wj\u0001\u0000\u0000"+
-		"\u0000XY\n\n\u0000\u0000YZ\u0005\u000b\u0000\u0000Zi\u0003\n\u0005\u000b"+
-		"[\\\n\t\u0000\u0000\\]\u0007\u0000\u0000\u0000]i\u0003\n\u0005\n^_\n\b"+
-		"\u0000\u0000_`\u0007\u0001\u0000\u0000`i\u0003\n\u0005\tab\n\u000b\u0000"+
-		"\u0000bc\u0005\t\u0000\u0000cf\u0003\n\u0005\u0000de\u0005\n\u0000\u0000"+
-		"eg\u0003\n\u0005\u0000fd\u0001\u0000\u0000\u0000fg\u0001\u0000\u0000\u0000"+
-		"gi\u0001\u0000\u0000\u0000hX\u0001\u0000\u0000\u0000h[\u0001\u0000\u0000"+
-		"\u0000h^\u0001\u0000\u0000\u0000ha\u0001\u0000\u0000\u0000il\u0001\u0000"+
-		"\u0000\u0000jh\u0001\u0000\u0000\u0000jk\u0001\u0000\u0000\u0000k\u000b"+
-		"\u0001\u0000\u0000\u0000lj\u0001\u0000\u0000\u0000\f\u000f\u0018\u001f"+
-		"$)-6<Vfhj";
+		"DE\u0005\n\u0000\u0000EW\u0003\n\u0005\u000bFG\u0005\u000f\u0000\u0000"+
+		"GH\u0003\n\u0005\u0000HI\u0005\u000f\u0000\u0000IW\u0001\u0000\u0000\u0000"+
+		"JK\u0005\u0010\u0000\u0000KL\u0003\n\u0005\u0000LM\u0005\u0011\u0000\u0000"+
+		"MW\u0001\u0000\u0000\u0000NO\u0005\u0012\u0000\u0000OP\u0003\n\u0005\u0000"+
+		"PQ\u0005\u0012\u0000\u0000QW\u0001\u0000\u0000\u0000RW\u0005\u0013\u0000"+
+		"\u0000SW\u0005\u0015\u0000\u0000TW\u0005\u0016\u0000\u0000UW\u0005\u0014"+
+		"\u0000\u0000VA\u0001\u0000\u0000\u0000VC\u0001\u0000\u0000\u0000VD\u0001"+
+		"\u0000\u0000\u0000VF\u0001\u0000\u0000\u0000VJ\u0001\u0000\u0000\u0000"+
+		"VN\u0001\u0000\u0000\u0000VR\u0001\u0000\u0000\u0000VS\u0001\u0000\u0000"+
+		"\u0000VT\u0001\u0000\u0000\u0000VU\u0001\u0000\u0000\u0000Wj\u0001\u0000"+
+		"\u0000\u0000XY\n\n\u0000\u0000YZ\u0005\u000b\u0000\u0000Zi\u0003\n\u0005"+
+		"\u000b[\\\n\t\u0000\u0000\\]\u0007\u0000\u0000\u0000]i\u0003\n\u0005\n"+
+		"^_\n\b\u0000\u0000_`\u0007\u0001\u0000\u0000`i\u0003\n\u0005\tab\n\u000e"+
+		"\u0000\u0000bc\u0005\b\u0000\u0000cf\u0003\n\u0005\u0000de\u0005\t\u0000"+
+		"\u0000eg\u0003\n\u0005\u0000fd\u0001\u0000\u0000\u0000fg\u0001\u0000\u0000"+
+		"\u0000gi\u0001\u0000\u0000\u0000hX\u0001\u0000\u0000\u0000h[\u0001\u0000"+
+		"\u0000\u0000h^\u0001\u0000\u0000\u0000ha\u0001\u0000\u0000\u0000il\u0001"+
+		"\u0000\u0000\u0000jh\u0001\u0000\u0000\u0000jk\u0001\u0000\u0000\u0000"+
+		"k\u000b\u0001\u0000\u0000\u0000lj\u0001\u0000\u0000\u0000\f\u000f\u0018"+
+		"\u001f$)-6<Vfhj";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

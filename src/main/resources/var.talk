@@ -1,29 +1,15 @@
-/*
-// if elseif example with scope assignment
-let a = 0, x = true? {
-    (a = 21) ? {
-        "ya"!
-    }: {
-        a = "ur mom";
-        !
-    }!
-} : true? {
-    a = false;
-    0!
+// if elseif else example
+let bool = false, a = true, x = 0;
+let result = bool? {
+    `x = x + 1`;
+    "bool is " + bool + "!"!
+} : (a + bool)? {
+    x = x - 1;
+    "a plus bool is " + (a + bool)!
+} : {
+    x = x + 2;
+    `"nothing worked!"`;
 };
 
+`result`;
 `x`;
-`a`;
-
-let y = 1;
-`y = y * (a = 0)`;
-`y`;
-*/
-
-let a = true, x -> a, y = x;
-
-a = 123;
-
-`a`;
-`x`;
-`y`;

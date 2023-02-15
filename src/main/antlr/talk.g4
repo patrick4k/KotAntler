@@ -24,10 +24,10 @@ block
 ;
 
 expression
-: block #blockExpr
+: expression '?' expression (':' expression)? #ifExpr
+| block #blockExpr
 | assignId #assignmentExpr
 | '-' expression #negExpr
-| expression '?' expression (':' expression)? #ifExpr
 | expression '^' expression #powExpr
 | expression op=('*'|'/') expression #multDivExpr
 | expression op=('+'|'-') expression #addSubExpr
